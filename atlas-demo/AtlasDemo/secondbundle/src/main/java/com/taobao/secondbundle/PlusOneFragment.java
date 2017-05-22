@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.taobao.middleware.IntChangerController;
 import com.taobao.secondbundle.R;
 import com.taobao.secondbundlelibrary.SecondbundleShareActivity;
 
@@ -32,6 +34,8 @@ public class PlusOneFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView textView;
 //    private PlusOneButton mPlusOneButton;
 
     private OnFragmentInteractionListener mListener;
@@ -81,6 +85,12 @@ public class PlusOneFragment extends Fragment {
             }
         });
 
+
+        TextView text = (TextView) view.findViewById(R.id.second_bundle_text);
+        textView   = text;
+
+        text.setText(" ---- " + IntChangerController.getChanger().getInteger());
+
         return view;
     }
 
@@ -90,6 +100,8 @@ public class PlusOneFragment extends Fragment {
 
         // Refresh the state of the +1 button each time the activity receives focus.
 //        mPlusOneButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
+        textView.setText(" ---- " + IntChangerController.getChanger().getInteger());
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

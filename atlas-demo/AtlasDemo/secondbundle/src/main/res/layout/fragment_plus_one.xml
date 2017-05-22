@@ -3,11 +3,24 @@
     android:layout_height="match_parent"
     >
 
-    <Button
-        android:id="@+id/plus_one_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="去这个Bundle的aar的Activity"
-         />
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/second_bundle_text"
+                android:text="empty"
+                android:layout_weight="1"/>
+
+        <Button
+                android:id="@+id/plus_one_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="去这个Bundle的aar的Activity"
+                android:layout_weight="1"/>
+    </LinearLayout>
 
 </FrameLayout>

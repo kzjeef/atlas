@@ -7,9 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.taobao.firstbundle.R;
+import com.taobao.middleware.IntChanger;
+import com.taobao.middleware.IntChangerController;
+import com.taobao.middleware.StringUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,11 +29,14 @@ public class BlankFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private int count = 1;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private TextView textView;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -63,16 +70,48 @@ public class BlankFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        textView.setText("----" + IntChangerController.getChanger().getInteger());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_blank, container, false);
-//        view.findViewById(R.id.btn_Test).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getContext(),"test",Toast.LENGTH_LONG).show();
-//            }
-//        });
+
+        final TextView text = (TextView) view.findViewById(R.id.first_bundle_text);
+
+        IntChangerController.setChanger(new IntChanger() {
+            @Override
+            public int getInteger() {
+                return count++;
+            }
+        });
+
+
+        text.setText("----" + IntChangerController.getChanger().getInteger());
+
+        textView = text;
+
+        view.findViewById(R.id.plus_one_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getContext(),"test",Toast.LENGTH_LONG).show();
+
+                IntChangerController.setChanger(new IntChanger() {
+                    @Override
+                    public int getInteger() {
+                        return ++count;
+                    }
+                });
+
+                text.setText("----" + IntChangerController.getChanger().getInteger());
+
+            }
+        });
         return view;
     }
 

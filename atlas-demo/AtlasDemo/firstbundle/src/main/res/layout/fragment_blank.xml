@@ -5,16 +5,26 @@
     tools:context="com.taobao.firstbundle.fragment.BlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-    <!--<Button-->
-        <!--android:id="@+id/btn_Test"-->
-        <!--android:text="buttontest"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--</Button>-->
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:id="@+id/plus_one_button"
+                android:text="加一"
+                android:layout_width="wrap_content"
+                android:layout_height="92dp"
+                >
+        </Button>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/first_bundle_text"
+                android:text="@string/hello_blank_fragment"
+                android:layout_weight="1"/>
+    </LinearLayout>
 
 </FrameLayout>
