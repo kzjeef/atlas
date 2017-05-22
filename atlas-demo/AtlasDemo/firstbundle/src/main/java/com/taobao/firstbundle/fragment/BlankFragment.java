@@ -1,5 +1,7 @@
 package com.taobao.firstbundle.fragment;
 
+import com.google.common.math.IntMath;
+
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -87,9 +89,12 @@ public class BlankFragment extends Fragment {
         IntChangerController.setChanger(new IntChanger() {
             @Override
             public int getInteger() {
-                return count++;
+                // Q:调用 guvav 里面的计算, 这个 class 只在firstbundle里面, 如果 secondbudnle 调用会发生什么?
+                // A: 竟然没事?!!!
+                return IntMath.checkedMultiply(count++, 10);
             }
         });
+
 
 
         text.setText("----" + IntChangerController.getChanger().getInteger());
@@ -100,16 +105,7 @@ public class BlankFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getContext(),"test",Toast.LENGTH_LONG).show();
-
-                IntChangerController.setChanger(new IntChanger() {
-                    @Override
-                    public int getInteger() {
-                        return ++count;
-                    }
-                });
-
                 text.setText("----" + IntChangerController.getChanger().getInteger());
-
             }
         });
         return view;
